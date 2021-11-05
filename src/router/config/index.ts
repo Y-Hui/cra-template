@@ -41,7 +41,6 @@ const routes: RouteConfig[] = [
   {
     path: '/',
     redirectTo: '/home',
-    component: lazy(() => import('@/views/root')),
   },
   {
     path: '/home',

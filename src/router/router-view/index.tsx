@@ -29,11 +29,17 @@ const RouterView: React.VFC<RouterViewProps> = (props) => {
     (options: RouteConfig) => {
       if (!options.component && typeof options.redirectTo === 'string') {
         return (
-          <Redirect
-            key={options.redirectTo}
-            from={options.path}
-            to={options.redirectTo}
-            withState={options.redirectWithState}
+          <Route
+            key={`redirect-${options.path}-to-${options.redirectTo}`}
+            path={options.path}
+            element={
+              <Redirect
+                key={options.redirectTo}
+                from={options.path}
+                to={options.redirectTo}
+                withState={options.redirectWithState}
+              />
+            }
           />
         )
       }
