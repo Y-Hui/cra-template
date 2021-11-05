@@ -1,0 +1,70 @@
+import React, { useCallback } from 'react'
+import { HashRouter as Router, Route, Routes } from 'react-router-dom'
+
+import { Redirect, RouteElement } from '../components'
+import routes, { RouteConfig } from '../config'
+
+export type RouterViewProps = {
+  /**
+   * 自定义渲染网页标题
+   */
+  websiteTitle?: (title?: string) => string
+}
+
+const RouterView: React.VFC<RouterViewProps> = (props) => {
+  const { websiteTitle: titleRender } = props
+
+  const websiteTitle = useCallback(
+    (title?: string) => {
+      let result = title || ''
+      if (typeof titleRender === 'function') {
+        result = titleRender(title) || result
+      }
+      return result
+    },
+    [titleRender],
+  )
+
+  const renderRoute = useCallback(
+    (options: RouteConfig) => {
+      if (!options.component && typeof options.redirectTo === 'string') {
+        return (
+          <Redirect
+            key={options.redirectTo}
+            from={options.path}
+            to={options.redirectTo}
+            withState={options.redirectWithState}
+          />
+        )
+      }
+      return (
+        <Route
+          key={options.path}
+          path={options.path}
+          element={
+            <RouteElement
+              title={websiteTitle(options.title)}
+              component={options.component}
+              redirestFrom={options.path}
+              redirectTo={options.redirectTo}
+              redirectWithState={options.redirectWithState}
+            />
+          }
+        >
+          {Array.isArray(options.routes) && (
+            <Routes>{options.routes.map(renderRoute)}</Routes>
+          )}
+        </Route>
+      )
+    },
+    [websiteTitle],
+  )
+
+  return (
+    <Router>
+      <Routes>{routes.map(renderRoute)}</Routes>
+    </Router>
+  )
+}
+
+export default RouterView

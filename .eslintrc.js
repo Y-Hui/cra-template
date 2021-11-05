@@ -57,5 +57,6 @@ module.exports = {
       'error',
       { devDependencies: ['**/*.test.ts', '**/*.test.tsx', 'vite.config.ts'] },
     ],
+    'react/require-default-props': 0,
   },
 }
