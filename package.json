@@ -12,6 +12,7 @@
     "ahooks": "^2.10.12",
     "classnames": "^2.3.1",
     "history-with-query": "^4.10.4",
+    "nprogress": "^0.2.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-router-dom": "^6.0.0"
@@ -20,6 +21,7 @@
     "@types/babel__core": "^7.1.16",
     "@types/loadable__component": "^5.13.4",
     "@types/node": "^16.11.6",
+    "@types/nprogress": "^0.2.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.3.2",

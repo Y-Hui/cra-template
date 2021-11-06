@@ -1,8 +1,10 @@
 import loadable, { DefaultComponent } from '@loadable/component'
 import React from 'react'
 
+import { Loading } from '../components'
+
 const feedback = {
-  fallback: React.createElement('div', null, 'loading...'),
+  fallback: React.createElement(Loading),
 }
 
 const lazy = (load: () => Promise<DefaultComponent<unknown>>) =>
