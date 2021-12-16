@@ -43,6 +43,8 @@ const RouterView: React.VFC<RouterViewProps> = (props) => {
           />
         )
       }
+      const hasNestedRoutes =
+        Array.isArray(options.routes) && options.routes.length > 0
       return (
         <Route
           key={options.path}
@@ -51,15 +53,17 @@ const RouterView: React.VFC<RouterViewProps> = (props) => {
             <RouteElement
               title={websiteTitle(options.title)}
               component={options.component}
+              wrapper={options.wrapper}
               redirestFrom={options.path}
               redirectTo={options.redirectTo}
               redirectWithState={options.redirectWithState}
+              hasNestedRoutes={hasNestedRoutes}
             />
           }
         >
-          {Array.isArray(options.routes) && (
-            <Routes>{options.routes.map(renderRoute)}</Routes>
-          )}
+          {hasNestedRoutes &&
+            Array.isArray(options.routes) &&
+            options.routes.map(renderRoute)}
         </Route>
       )
     },

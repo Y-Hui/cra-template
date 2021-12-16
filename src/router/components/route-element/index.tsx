@@ -1,4 +1,4 @@
-import { ComponentType, FC } from 'react'
+import { ComponentType, FC, Fragment } from 'react'
 import { Outlet } from 'react-router-dom'
 
 import { RouteConfig } from '@/router/config'
@@ -24,9 +24,19 @@ export interface RouteElementProps
    */
   component?: ComponentType
   /**
+   * 外层包裹组件
+   */
+  wrapper?: ComponentType
+  /**
    * 重定向来源
    */
   redirestFrom?: string
+  /**
+   * 具有嵌套路由
+   *
+   * 需要渲染 <Outlet />
+   */
+  hasNestedRoutes?: boolean
 }
 
 /**
@@ -39,23 +49,25 @@ const RouteElement: FC<RouteElementProps> = (props) => {
     redirestFrom,
     redirectTo,
     redirectWithState,
+    wrapper: Wrapper = Fragment,
+    hasNestedRoutes,
   } = props
 
   return (
-    <WebSiteTitle title={title}>
-      {Component && (
-        <Component>
-          <Outlet />
-        </Component>
-      )}
-      {redirectTo && (
-        <Redirect
-          from={redirestFrom}
-          to={redirectTo}
-          withState={redirectWithState}
-        />
-      )}
-    </WebSiteTitle>
+    <Wrapper>
+      <WebSiteTitle title={title}>
+        {Component && (
+          <Component>{hasNestedRoutes ? <Outlet /> : undefined}</Component>
+        )}
+        {redirectTo && (
+          <Redirect
+            from={redirestFrom}
+            to={redirectTo}
+            withState={redirectWithState}
+          />
+        )}
+      </WebSiteTitle>
+    </Wrapper>
   )
 }
 
