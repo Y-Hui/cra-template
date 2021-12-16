@@ -1,5 +1,5 @@
 {
-  "name": "official",
+  "name": "cra-template",
   "version": "0.0.0",
   "preview": true,
   "scripts": {
@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@loadable/component": "^5.15.0",
-    "ahooks": "^2.10.12",
     "classnames": "^2.3.1",
     "history-with-query": "^4.10.4",
     "nprogress": "^0.2.0",
@@ -43,6 +42,7 @@
     "less-loader": "^10.2.0",
     "postcss": "^8.3.11",
     "prettier": "^2.2.1",
+    "rollup-plugin-visualizer": "^5.5.2",
     "stylelint": "^13.11.0",
     "stylelint-config-idiomatic-css": "^1.1.0",
     "stylelint-config-idiomatic-order": "^8.1.0",

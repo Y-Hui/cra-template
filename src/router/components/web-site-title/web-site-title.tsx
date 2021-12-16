@@ -1,5 +1,4 @@
-import { useTitle } from 'ahooks'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 export interface WebSiteTitleProps {
   /**
@@ -11,7 +10,11 @@ export interface WebSiteTitleProps {
 const WebSiteTitle: React.FC<WebSiteTitleProps> = (props) => {
   const { title, children } = props
 
-  useTitle(`${title}`)
+  useEffect(() => {
+    if (typeof title === 'string' && title.trim().length > 0) {
+      document.title = `${title}`
+    }
+  }, [title])
 
   return <>{children}</>
 }
