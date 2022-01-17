@@ -1,8 +1,7 @@
 import { ComponentType, FC, Fragment } from 'react'
 import { Outlet } from 'react-router-dom'
 
-import { RouteConfig } from '@/router/config'
-
+import { RouteConfig } from '../../types/route-config'
 import Redirect from '../redirect'
 import { WebSiteTitle } from '../web-site-title'
 

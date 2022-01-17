@@ -2,7 +2,8 @@ import React, { useCallback } from 'react'
 import { HashRouter as Router, Route, Routes } from 'react-router-dom'
 
 import { Redirect, RouteElement } from '../components'
-import routes, { RouteConfig } from '../config'
+import routes from '../config'
+import { RouteConfig } from '../types/route-config'
 
 export type RouterViewProps = {
   /**
